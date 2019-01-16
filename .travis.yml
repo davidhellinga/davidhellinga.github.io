@@ -8,7 +8,7 @@ branches:
 
 script:
   - npm test
-  - CI=true npm run build --base-href https://davidhellinga.github.io/
+  - npm run build --base-href https://davidhellinga.github.io/
 
 deploy:
   provider: pages
