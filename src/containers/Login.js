@@ -43,11 +43,12 @@ export default class Login extends Component {
             }
         });
 
-        await validate().then(value => {
-            this.setState({isAuthenticated: value})
+        await validate().then(result => {
+            this.props.userNameChange(result);
+            this.props.userHasAuthenticated(result !== "");
         }).then(() => {
             this.setState({isLoading: false});
-            if (this.state.isAuthenticated === true) {
+            if (this.props.isAuthenticated === true) {
                 this.props.history.push("/");
             } else {
                 alert("Login failed.")

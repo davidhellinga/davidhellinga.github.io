@@ -44,7 +44,7 @@ export default class NewTimeline extends Component {
 
         await validate().then(value => {
             //
-            this.state.userHasAuthenticated(value);
+            this.state.userHasAuthenticated(value !== "");
             console.log(this.state.isAuthenticated)
         }).then(() => {
             this.setState({isLoading: false});

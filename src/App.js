@@ -16,26 +16,33 @@ class App extends Component {
         this.state = {
             isAuthenticated: false,
             isAuthenticating: true,
-            isLoading: false
+            isLoading: false,
+            name: ""
         };
     }
 
     async componentDidMount() {
+        this.setState({isAuthenticating: false});
+        this.setName("");
         try {
             await validate().then(value => {
-                this.setState({isAuthenticated: value})
+                this.setName(value);
+                console.log(this.state.name);
+                this.setState({isAuthenticated: value !== ""});
             });
         } catch (e) {
             if (e !== 'No current user') {
                 alert(e);
             }
         }
-
-        this.setState({isAuthenticating: false});
         if (this.state.isAuthenticated === false) {
             this.props.history.push("/login");
         }
     }
+
+    setName = newName => {
+        this.setState({name: "@ "+newName})
+    };
 
     userHasAuthenticated = authenticated => {
         this.setState({isAuthenticated: authenticated});
@@ -44,22 +51,25 @@ class App extends Component {
     handleLogout = event => {
         this.userHasAuthenticated(false);
         cookieRemove("token");
+        this.setName("");
         this.props.history.push("/login");
     };
 
     render() {
         const childProps = {
             isAuthenticated: this.state.isAuthenticated,
+            userNameChange: this.setName,
             userHasAuthenticated: this.userHasAuthenticated,
             isLoading: this.state.isLoading
         };
+
         return (
             !this.state.isAuthenticating &&
             <div className="App container">
                 <Navbar fluid collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link to="/">Chrono Alpha</Link>
+                            <Link to="/">Chrono Alpha {this.state.name}</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle/>
                     </Navbar.Header>

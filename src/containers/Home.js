@@ -40,43 +40,6 @@ export default class extends Component {
         tableNr: 0
     };
 
-    componentDidMount() {
-        this.fetchAllergyData();
-        this.fetchCategoryData();
-    }
-
-    fetchAllergyData() {
-        fetch("http://localhost:9050/allergies")
-            .then(response => response.json())
-            .then(parsedJSON => parsedJSON.allergies.map(allergy => (
-                {
-                    name: `${allergy.name}`,
-                    id: `${allergy.id}`
-                }
-            )))
-            .then(data => this.setState({
-                allergies: data,
-                allergyNames: data.map((item) => item.name),
-            }))
-            .catch(error => console.log("There was an error during: 'fetchAllergyData'", error))
-    }
-
-    fetchCategoryData() {
-        fetch("http://localhost:9050/categories")
-            .then(response => response.json())
-            .then(parsedJSON => parsedJSON.categories.map(category => (
-                {
-                    name: `${category.name}`,
-                    id: `${category.id}`
-                }
-            )))
-            .then(data => this.setState({
-                categories: data,
-                categoryNames: data.map((item) => item.name)
-            }))
-            .catch(error => console.log("There was an error during: 'fetchCategoryData' ", error))
-    }
-
     handleAddItemToOrder = id => {
 
         // Increase the amount of a dish

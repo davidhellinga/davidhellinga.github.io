@@ -6,8 +6,7 @@ export async function validate() {
     }).then(result => {
         return result.text();
     }).then(data => {
-        console.log(data);
-        return data !== "";
+        return data;
     });
     return yee;
 }
