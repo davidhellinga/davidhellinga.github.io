@@ -4,7 +4,7 @@ import ReactJson from 'react-json-view'
 
 import React from "react";
 
-
+//TODO: maybe use https://mozilla-services.github.io/react-jsonschema-form/
 export default class TimelineList extends Component {
     constructor(props) {
         super(props);
