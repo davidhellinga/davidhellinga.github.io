@@ -16,6 +16,7 @@ export default class Home extends Component {
     }
 
     render() {
+
         return (<div className="Home">
             <NewTimeline props={this.props}/>
             <TimelineList props={this.props}/>

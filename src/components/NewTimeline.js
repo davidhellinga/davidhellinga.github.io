@@ -58,6 +58,7 @@ export default class NewTimeline extends Component {
         }).then(data => {
             if (data !== "true") {
                 alert("Timeline creation failed.")
+            } else{
             }
         });
 
