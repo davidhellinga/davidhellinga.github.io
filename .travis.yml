@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "stable"
+cache:
+  - npm
+  directories:
+    - /home/travis/build/davidhellinga/davidhellinga.github.io/cypress/videos/tests/
 
 branches:
   only:
