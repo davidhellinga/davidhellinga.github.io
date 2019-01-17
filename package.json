@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "avatarContainer": "react-scripts test --env=jsdom",
