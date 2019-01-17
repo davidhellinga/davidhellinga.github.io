@@ -6,9 +6,13 @@ branches:
   only:
     - development
 
+before_script:
+  - npm start -- --silent &
+
 script:
   - npm test
   - npm run build --base-href https://davidhellinga.github.io/
+  - npm run cypress
 
 deploy:
   provider: pages

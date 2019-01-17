@@ -15,7 +15,7 @@ export default class TimelineList extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.fetchTimelines()
     }
 
