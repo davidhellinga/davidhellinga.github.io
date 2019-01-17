@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "stable"
 cache:
-  - npm
+  npm: true
   directories:
     - /home/travis/build/davidhellinga/davidhellinga.github.io/cypress/videos/tests/
 
