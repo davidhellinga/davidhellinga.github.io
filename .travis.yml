@@ -12,7 +12,7 @@ before_script:
 script:
   - npm test
   - npm run build --base-href https://davidhellinga.github.io/
-  - npm run cypress
+  - npm run cypress:run
 
 deploy:
   provider: pages
