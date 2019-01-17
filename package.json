@@ -19,10 +19,13 @@
     "react-scripts": "^2.1.3",
     "universal-cookie": "^3.0.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^3.1.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "cypress:open": "cypress open",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "avatarContainer": "react-scripts test --env=jsdom",

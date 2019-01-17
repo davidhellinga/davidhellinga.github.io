@@ -5,7 +5,7 @@ import {LinkContainer} from "react-router-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
 import {validate} from "./components/ValidateToken";
-import {cookieRemove} from "./components/CookieUtil";
+import {cookieRead, cookieRemove} from "./components/CookieUtil";
 
 
 class App extends Component {
@@ -21,27 +21,40 @@ class App extends Component {
         };
     }
 
+    clearCookieAndDeauth() {
+        cookieRemove("token");
+        this.setState({isAuthenticated: false});
+    }
+
     async componentDidMount() {
-        this.setState({isAuthenticating: false});
+        this.setState({isAuthenticating: true});
         this.setName("");
-        try {
-            await validate().then(value => {
-                this.setName(value);
-                console.log(this.state.name);
-                this.setState({isAuthenticated: value !== ""});
-            });
-        } catch (e) {
-            if (e !== 'No current user') {
-                alert(e);
+        if (cookieRead("token") === "") {
+            this.clearCookieAndDeauth();
+        } else {
+            try {
+                await validate().then(value => {
+                    if (value === false || value === "false") {
+                        this.clearCookieAndDeauth();
+                    } else {
+                        this.setName(value);
+                        this.setState({isAuthenticated: value !== ""});
+                    }
+                });
+            } catch (e) {
+                if (e !== 'No current user') {
+                    alert(e);
+                }
             }
         }
+        this.setState({isAuthenticating:false});
         if (this.state.isAuthenticated === false) {
             this.props.history.push("/login");
         }
     }
 
     setName = newName => {
-        this.setState({name: "@ "+newName})
+        this.setState({name: "@ " + newName})
     };
 
     userHasAuthenticated = authenticated => {
