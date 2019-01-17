@@ -10,7 +10,9 @@ describe('Log In', () => {
             cy.contains("Login").should("exist");
         });
         //enter login data
+        cy.get('button[type="submit"').should('be.disabled');
         cy.get('input[id="email"]').type(mail);
+        cy.get('button[type="submit"').should('be.disabled');
         cy.get('input[id="password"').type("testpass");
         cy.get('button[type="submit"').click();
         //verify redirect
@@ -33,7 +35,9 @@ describe('Log In', () => {
             cy.contains("Login").should("exist");
         });
         //enter login data
+        cy.get('button[type="submit"').should('be.disabled');
         cy.get('input[id="email"]').type(mail);
+        cy.get('button[type="submit"').should('be.disabled');
         cy.get('input[id="password"').type("&&^%%");
         cy.get('button[type="submit"').click();
         //verify redirect
