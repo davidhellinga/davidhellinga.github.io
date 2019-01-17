@@ -22,18 +22,20 @@ export default class TimelineList extends Component {
 
     fetchTimelines = async event => {
 
-        await fetch("https://chrono-omega.herokuapp.com/api/timelines?token=" + cookieRead("token"), {
-            method: 'GET'
+        if (cookieRead("token")!=null){
+            await fetch("https://chrono-omega.herokuapp.com/api/timelines?token=" + cookieRead("token"), {
+                method: 'GET'
 
-        }).then(response => {
-            if (response.ok) {
-                return response.json()
-            } else {
-                alert("Something went wrong")
-            }
-        }).then(data => {
-            this.setState({jsonObject: data})
-        });
+            }).then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    alert("Something went wrong")
+                }
+            }).then(data => {
+                this.setState({jsonObject: data})
+            });
+        }
     };
 
     static getTrue(){return true}
